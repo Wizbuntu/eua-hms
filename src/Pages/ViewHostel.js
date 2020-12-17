@@ -114,7 +114,7 @@ const ViewHostel = () => {
             <div class="col-12">
               <div class="row align-items-center my-4">
                 <div class="col">
-                  <h2 class="h3 mb-0 page-title">Clearance Requests</h2>
+                  <h2 class="h3 mb-0 page-title">Hostels / Rooms</h2>
                 </div>
               
               </div>

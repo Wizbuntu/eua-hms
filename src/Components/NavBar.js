@@ -14,7 +14,7 @@ const NavBar =() => {
     const userID = app.auth().currentUser ? app.auth().currentUser.uid : ""
 
 
-    app.database().ref('Staff/'+userID).once('value')
+    app.database().ref('Porter/'+userID).once('value')
     .then((snapshot) => {
 
       if(snapshot.val()) {

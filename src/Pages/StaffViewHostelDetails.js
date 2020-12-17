@@ -160,63 +160,71 @@ const StaffViewClearanceDetails = (props) => {
                     return toast.error("Oops! An error has occured")
                 }
 
+
+                return toast.success("Hostel and Room Allocated Successfully")
+
                 
 
-              // get hostel by hostel name
-              app.database().ref("HostelRoom").orderByChild("hostelName").equalTo(editHostelData.hostelName).on("value", (snapshot) => {
-                if(snapshot.val()) {
-                  // update hostel details
-                  setUpdateHostelDetails(snapshot.val())
-                }
-              })
+              // // get hostel by hostel name
+              // app.database().ref("HostelRoom").orderByChild("hostelName").equalTo(editHostelData.hostelName).on("value", (snapshot) => {
+              //   if(snapshot.val()) {
+              //     // update hostel details
+              //     setUpdateHostelDetails(snapshot.val())
+              //   }
+              // })
 
 
-              // iterate through updateHostelDetails
-              Object.keys(updateHostelDetails).map((key) => {
-                if(updateHostelDetails[key].roomNumber === Number(editHostelData.roomNumber)) {
-                  return (
-                    // find hostel Name by ID
-                  app.database().ref().child(`HostelRoom/${key}`).on("value", (snapshot) => {
-                    if(snapshot.val()){
-                      // get details
-                      const allocated = snapshot.val().alocated + 1
-                      const maxAllocation = snapshot.val().maxAllocation
-                      const available = maxAllocation - allocated
+              // // iterate through updateHostelDetails
+              // Object.keys(updateHostelDetails).map((key) => {
+              //   if(updateHostelDetails[key].roomNumber === Number(editHostelData.roomNumber)) {
+              //     return (
+              //       // find hostel Name by ID
+              //     app.database().ref().child(`HostelRoom/${key}`).on("value", (snapshot) => {
+              //       if(snapshot.val()){
+              //         // get details
+              //         const allocated = snapshot.val().alocated + 1
+              //         const maxAllocation = snapshot.val().maxAllocation
+              //         const available = maxAllocation - allocated
 
-                      // get data
-                      const getHostelData = {
-                        alocated: allocated,
-                        maxAllocation: maxAllocation,
-                        available: available,
-                        key: key
-                      }
+              //         // get data
+              //         const getHostelData = {
+              //           alocated: allocated,
+              //           maxAllocation: maxAllocation,
+              //           available: available,
+              //           key: key
+              //         }
 
-                      hostelDetailsRef.current = getHostelData
+              //         hostelDetailsRef.current = getHostelData
 
                    
                       
-                    }
-                  })
+              //       }
+              //     })
                     
-                  )
-                }
+              //     )
+              //   }
 
 
-                if(hostelDetailsRef.current.key) {
-                   //update hostel data
-                  app.database().ref().child(`HostelRoom/${hostelDetailsRef.current.key}`).update(hostelDetailsRef.current, (error) => {
-                   if(error) {
-                     console.log(error)
-                     return toast.error(error.message)
-                   }
- 
-                   // return success
-                   return history.push('/staff/dashboard/hostel/requests')
-                 })
-                console.log(updateHostelDetails)
-               }
 
-              })
+              //   if(hostelDetailsRef.current.key) {
+              //     //update hostel data
+              //    app.database().ref().child(`HostelRoom/${hostelDetailsRef.current.key}`).update(hostelDetailsRef.current, (error) => {
+              //     if(error) {
+              //       console.log(error)
+              //       return toast.error(error.message)
+              //     }
+                  
+              //     console.log(hostelDetailsRef.current)
+              //     // return success
+              //     return history.push('/staff/dashboard/hostel/requests')
+              //   })
+               
+              //   }
+
+
+                
+
+              // })
 
               
 
